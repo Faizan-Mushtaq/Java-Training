@@ -96,8 +96,20 @@ public class JdbcProductDao implements ProductDao {
 
 	@Override
 	public void deleteProduct(int id) throws DaoException {
-		// TODO Auto-generated method stub
+		
+		String sql = "delete from products where id = ?";
+		
+		try(Connection conn =DBUtil.createConnection();
+				PreparedStatement stmt=conn.prepareStatement(sql);){
+			stmt.setInt(1, id);
+			
+			stmt.execute();
+			log.debug("1  record deleted successfully!");
+		}catch(Exception e)
 
+		{
+			e.printStackTrace();
+		}
 	}
 
 	@Override
