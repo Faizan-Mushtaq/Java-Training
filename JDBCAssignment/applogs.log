@@ -1,0 +1,4 @@
+0    [main] 2021-03-11 11:15:33,973 WARN  com.epsilon.training.dao.JdbcProductDao  - Error - Data conversion error converting "'wsx' (PRODUCTS: UNIT_PRICE DOUBLE NOT NULL)"; SQL statement:
+insert into products values(null,?,?,?,?,?,?,?,?) -- (NULL, ?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8) [22018-197] -- 
+0    [main] 2021-03-11 11:18:42,862 DEBUG com.epsilon.training.dao.JdbcProductDao  - 1 (test2) record inserted successfully!
+0    [main] 2021-03-11 12:25:12,095 DEBUG com.epsilon.training.programs.ProductManagerApplication  - Product is Product(id=87, name=test3, description=r, brand=q, category=w, quantityPerUnit=e, unitPrice=22.0, discount=3, picture=t)
