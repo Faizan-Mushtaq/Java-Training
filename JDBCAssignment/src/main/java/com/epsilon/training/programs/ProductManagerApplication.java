@@ -62,13 +62,20 @@ public class ProductManagerApplication {
 
 
 
-	private void acceptAndDeleteProduct() {
+	private void acceptAndDeleteProduct() throws DaoException {
 		int id=KeyboardUtil.getInt("Enter Id");
-//		try {
-//			//Product p=dao.updateProduct(id);
-//		} catch (DaoException e) {
-//			e.printStackTrace();
-//		}
+		
+		try {
+			Product p = dao.getProduct(id);
+			if (p == null) {
+				System.out.println("No product data found for id " + id);
+			} else {
+				dao.deleteProduct(id);
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -82,6 +89,12 @@ public class ProductManagerApplication {
 		int id=KeyboardUtil.getInt("Enter Id");
 		try {
 			Product p=dao.getProduct(id);
+			if(p==null)
+			{
+				System.out.println("No product data found for id " + id);
+
+			}
+			else {
 			String sql="select * from products where id=?";
 			
 			try(
@@ -105,7 +118,7 @@ public class ProductManagerApplication {
 				
 			}
 		
-			
+			}	
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
