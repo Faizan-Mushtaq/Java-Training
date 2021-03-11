@@ -3,9 +3,9 @@ package com.epsilon.training.programs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 
 import com.epsilon.training.dao.DaoException;
 import com.epsilon.training.dao.DaoFactory;
@@ -47,6 +47,9 @@ public class ProductManagerApplication {
 				case 4:
 					acceptAndDeleteProduct();
 					break;
+				case 5:
+					acceptAndGetList();
+					break;
 				default:
 					System.out.println("Invalid choice! Please try again.");
 				}
@@ -59,6 +62,20 @@ public class ProductManagerApplication {
 	
 
 	
+
+
+
+	private void acceptAndGetList() throws DaoException {
+		List<Product> list=new ArrayList<>();
+		list=dao.getAll();
+		for(Product p:list)
+		System.out.println(p.toString());
+		
+	}
+
+
+
+
 
 
 
@@ -241,6 +258,7 @@ public class ProductManagerApplication {
 		System.out.println("2. Retrieve a product by id");
 		System.out.println("3. Modify details of a product");
 		System.out.println("4. Remove product details");
+		System.out.println("5. Get By List All Products");
 	}
 
 	public static void main(String[] args) throws Exception {
