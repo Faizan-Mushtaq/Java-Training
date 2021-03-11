@@ -114,8 +114,41 @@ public class JdbcProductDao implements ProductDao {
 
 	@Override
 	public List<Product> getAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return ProductDao.super.getAll();
+		String sql="select * from products";
+		List<Product>list =new ArrayList<>();
+
+		try(
+			Connection conn=DBUtil.createConnection();
+			Statement stmt=conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);){
+			while(rs.next()) {
+			Product p = new Product();
+			p.setId(rs.getInt("id"));
+			p.setName(rs.getString("name"));
+			p.setBrand(rs.getString("brand"));
+			p.setCategory(rs.getString("category"));
+			p.setDescription(rs.getString("description"));
+			p.setQuantityPerUnit(rs.getString("quantity_per_unit"));
+			p.setPicture(rs.getString("picture"));
+			p.setDiscount(rs.getInt("discount"));
+			p.setUnitPrice(rs.getDouble("unit_price"));
+			
+			list.add(p);
+			}
+//			while(rs.next()) {
+//				int id=rs.getInt("id");
+//				String name=rs.getString("name");
+//				String qpu=rs.getString("quantity_per_unit");
+//				String brand=rs.getString("brand");
+//				double price=rs.getDouble("unit_price");
+////				System.out.printf("%d, %-20s, %-40s,%-10s, %-10s\n",id,name,qpu,brand,price);
+//				
+//			}
+			
+		}catch(Exception e) {
+			log.warn("Error --{}",e.getMessage());
+		}
+		return lis
 	}
 
 	@Override
